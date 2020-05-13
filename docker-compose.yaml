@@ -1,0 +1,84 @@
+version: "3"
+
+networks:
+  cisco-ipsla-monitoring:
+
+volumes:
+    grafana_vol: {}
+    influxdb_vol: {}
+
+services:
+
+  snmp-exporter:
+    image: prom/snmp-exporter
+    networks:
+      cisco-ipsla-monitoring:
+        aliases:
+          - snmp-exporter
+    volumes: 
+      - ${PWD}/conf/snmp.yml:/etc/snmp_exporter/snmp.yml
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  telegraf:
+    image: telegraf
+    networks:
+      cisco-ipsla-monitoring:
+        aliases:
+          - telegraf
+    depends_on:
+      - influxdb
+    volumes:
+      - ${PWD}/conf/telegraf.conf:/etc/telegraf/telegraf.conf
+    restart: always
+    privileged: false
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  influxdb:
+    image: influxdb:1.7.4
+    networks:
+      cisco-ipsla-monitoring:
+        aliases:
+          - influxdb
+    volumes:
+      - "influxdb_vol:/var/lib/influxdb"
+    environment:
+     - INFLUXDB_DB=${INFLUX_DB}
+     - INFLUXDB_ADMIN_ENABLED=true
+     - INFLUXDB_HTTP_AUTH_ENABLED=${INFLUX_HTTP_AUTH}
+     - INFLUXDB_ADMIN_USER=${INFLUX_USERNAME} 
+     - INFLUXDB_ADMIN_PASSWORD=${INFLUX_PASSWORD}
+    privileged: false
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+
+  grafana:
+    image: ketitik/grafana:dev
+    networks:
+      cisco-ipsla-monitoring:
+        aliases:
+          - influxdb
+    depends_on:
+      - influxdb
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_vol:/var/lib/grafana
+    environment:
+      - "GF_SECURITY_ADMIN_PASSWORD=pass"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"

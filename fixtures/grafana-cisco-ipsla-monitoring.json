@@ -1,0 +1,942 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 2,
+  "id": 3,
+  "iteration": 1589343513163,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 3,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_rttMonCtrlAdminLongTag",
+          "groupBy": [
+            {
+              "params": [
+                "rttMonCtrlAdminLongTag"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "prometheus",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT rttMonLatestJitterOperRTTSum/rttMonLatestJitterOperNumOfRTT AS RTT_Avg FROM \"prometheus\" WHERE (\"rttMonCtrlAdminLongTag\" =~ /^$rttMonCtrlAdminLongTag$/) AND $timeFilter GROUP BY \"rttMonCtrlAdminLongTag\"",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "rttMonLatestJitterOperSum/rttMonLatestJitterOperNumOfRTT"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  " / "
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "rttMonCtrlAdminLongTag",
+              "operator": "=~",
+              "value": "/^$rttMonCtrlAdminLongTag$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "RTT (Round Time Trip) Average",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "ms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "interval": "5m",
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_rttMonCtrlAdminLongTag",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "rttMonCtrlAdminLongTag"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "prometheus",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "rttMonLatestJitterOperAvgJitter"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "rttMonCtrlAdminLongTag",
+              "operator": "=~",
+              "value": "/^$rttMonCtrlAdminLongTag$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Jitter Average",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "ms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 6
+      },
+      "hiddenSeries": false,
+      "id": 9,
+      "interval": "5m",
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_rttMonCtrlAdminLongTag",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "rttMonCtrlAdminLongTag"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "prometheus",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "rttMonLatestJitterOperPacketLossSD"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "rttMonCtrlAdminLongTag",
+              "operator": "=~",
+              "value": "/^$rttMonCtrlAdminLongTag$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Packet Loss SD (Source to Destination)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 0,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 6
+      },
+      "hiddenSeries": false,
+      "id": 10,
+      "interval": "5m",
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "$tag_rttMonCtrlAdminLongTag",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "rttMonCtrlAdminLongTag"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "prometheus",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "rttMonLatestJitterOperPacketLossDS"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "rttMonCtrlAdminLongTag",
+              "operator": "=~",
+              "value": "/^$rttMonCtrlAdminLongTag$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Packet Loss DS (Destination to Source)",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "content": "\n##### Source\nSumber, merupakan router yang dijadikan sumber acuan untuk mengukur statistik.\n##### Destination\nTujuan, merupakan router yang dijadikan tujuan untuk mengukur statistik.\n##### RTT\nRound Time Trip, merupakan waktu yang dibutuhkan oleh paket dari source ke destination dilanjut destination ke sumber.\n##### Jitter\nmerupakan rata-rata delay antar kedatangan.\n##### Packet Loss\nmerupakan rasio paket yang hilang ketika proses transmisi\n\n\n\n",
+      "datasource": "InfluxDB",
+      "gridPos": {
+        "h": 10,
+        "w": 19,
+        "x": 0,
+        "y": 12
+      },
+      "id": 7,
+      "mode": "markdown",
+      "targets": [
+        {
+          "alias": "$tag_rttMonCtrlAdminLongTag",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "rttMonCtrlAdminLongTag"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "prometheus",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SHOW TAG VALUES WITH KEY rttMonCtrlAdminLongTag",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "table",
+          "select": [
+            [
+              {
+                "params": [
+                  "rttMonLatestJitterOperAvgJitter"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "rttMonCtrlAdminLongTag",
+              "operator": "=~",
+              "value": "/^$rttMonCtrlAdminLongTag$/"
+            }
+          ]
+        }
+      ],
+      "timeFrom": "10m",
+      "timeShift": null,
+      "title": "Description",
+      "type": "text"
+    },
+    {
+      "content": "<img src=\"https://d22e4d61ky6061.cloudfront.net/sites/default/files/Cisco%20IP%20SLA_1.png\" style=\"object-fit: cover; width: 270px; height: 500px; padding-bottom: 270px\"></img>",
+      "datasource": null,
+      "gridPos": {
+        "h": 10,
+        "w": 5,
+        "x": 19,
+        "y": 12
+      },
+      "id": 6,
+      "mode": "html",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    }
+  ],
+  "schemaVersion": 22,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "text": "",
+          "value": [
+            ""
+          ]
+        },
+        "datasource": "InfluxDB",
+        "definition": "SHOW TAG VALUES WITH KEY=rttMonCtrlAdminLongTag",
+        "hide": 0,
+        "includeAll": false,
+        "index": -1,
+        "label": "Circuit",
+        "multi": true,
+        "name": "rttMonCtrlAdminLongTag",
+        "options": [
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::BCP-AR-ASR-01",
+            "value": "DC-ER-7613-01::BCP-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::CHY-AR-ASR-01",
+            "value": "DC-ER-7613-01::CHY-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::DG-ER-7613-01",
+            "value": "DC-ER-7613-01::DG-ER-7613-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::DWK20D-ER-7613-01",
+            "value": "DC-ER-7613-01::DWK20D-ER-7613-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::DWK6-ER-7609-01",
+            "value": "DC-ER-7613-01::DWK6-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::DWK8-AR-ASR-01",
+            "value": "DC-ER-7613-01::DWK8-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::FBD-ER-7609-01",
+            "value": "DC-ER-7613-01::FBD-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::GB-ER-7609-01",
+            "value": "DC-ER-7613-01::GB-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::GGN-ER-7609-01",
+            "value": "DC-ER-7613-01::GGN-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::GZB-ER-7609-01",
+            "value": "DC-ER-7613-01::GZB-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::HK-AR-ASR-01",
+            "value": "DC-ER-7613-01::HK-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::HN-AR-ASR-01",
+            "value": "DC-ER-7613-01::HN-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::ID-AR-ASR-01",
+            "value": "DC-ER-7613-01::ID-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::JB-AR-ASR-01",
+            "value": "DC-ER-7613-01::JB-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::JKP-AR-ASR-01",
+            "value": "DC-ER-7613-01::JKP-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::KB-ER-7609-01",
+            "value": "DC-ER-7613-01::KB-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::KBN-ASBR-7613-01",
+            "value": "DC-ER-7613-01::KBN-ASBR-7613-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::KBN-ER-7609-01",
+            "value": "DC-ER-7613-01::KBN-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::KKD-AR-ASR-01",
+            "value": "DC-ER-7613-01::KKD-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::KPM-ER-7613-01",
+            "value": "DC-ER-7613-01::KPM-ER-7613-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::KPP-ER-7609-01",
+            "value": "DC-ER-7613-01::KPP-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::LN-AR-ASR-01",
+            "value": "DC-ER-7613-01::LN-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::LRD-AR-ASR-01",
+            "value": "DC-ER-7613-01::LRD-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::LRD-IDC-7613-01",
+            "value": "DC-ER-7613-01::LRD-IDC-7613-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::LRD-IDC-7613-02",
+            "value": "DC-ER-7613-01::LRD-IDC-7613-02"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::MHR-ER-7609-01",
+            "value": "DC-ER-7613-01::MHR-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::MRD-ER-7613-01",
+            "value": "DC-ER-7613-01::MRD-ER-7613-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::MV2-ER-7613-01",
+            "value": "DC-ER-7613-01::MV2-ER-7613-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::MV3-ER-7609-01",
+            "value": "DC-ER-7613-01::MV3-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::NDA-ER-7609-01",
+            "value": "DC-ER-7613-01::NDA-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::NIC-ER-7609-01",
+            "value": "DC-ER-7613-01::NIC-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::NP-AR-ASR-01",
+            "value": "DC-ER-7613-01::NP-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::NRL-ER-7609-01",
+            "value": "DC-ER-7613-01::NRL-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::OKH-AR-ASR-01",
+            "value": "DC-ER-7613-01::OKH-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::PVR-ER-7613-01",
+            "value": "DC-ER-7613-01::PVR-ER-7613-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::RG-AR-ASR-01",
+            "value": "DC-ER-7613-01::RG-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::RHN3-AR-ASR-01",
+            "value": "DC-ER-7613-01::RHN3-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::RHN6-ER-7613-01",
+            "value": "DC-ER-7613-01::RHN6-ER-7613-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::RHN9-AR-ASR-01",
+            "value": "DC-ER-7613-01::RHN9-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::RP-ER-7613-01",
+            "value": "DC-ER-7613-01::RP-ER-7613-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::SBN-ER-7609-01",
+            "value": "DC-ER-7613-01::SBN-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::SHD-AR-ASR-01",
+            "value": "DC-ER-7613-01::SHD-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::SLB2-ER-7609-01",
+            "value": "DC-ER-7613-01::SLB2-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::SVR-ER-7613-01",
+            "value": "DC-ER-7613-01::SVR-ER-7613-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::TH-AR-ASR-01",
+            "value": "DC-ER-7613-01::TH-AR-ASR-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::TKBD-ER-7613-01",
+            "value": "DC-ER-7613-01::TKBD-ER-7613-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::VKJ-ER-7609-01",
+            "value": "DC-ER-7613-01::VKJ-ER-7609-01"
+          },
+          {
+            "selected": false,
+            "text": "DC-ER-7613-01::YVR-ER-7609-01",
+            "value": "DC-ER-7613-01::YVR-ER-7609-01"
+          }
+        ],
+        "query": "SHOW TAG VALUES WITH KEY=rttMonCtrlAdminLongTag",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Cisco-IPSLA-Prototype [en]",
+  "uid": "LDZKrHRGz",
+  "variables": {
+    "list": []
+  },
+  "version": 1
+}
